@@ -1,0 +1,30 @@
+{
+  "name": "centralized-login",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
+  "proxy": "http://localhost:4567",
+  "dependencies": {
+    "auth0-js": "^9.0.0",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "path": "^0.12.7",
+    "pg-monitor": "^1.0.0",
+    "pg-promise": "^8.4.5",
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
