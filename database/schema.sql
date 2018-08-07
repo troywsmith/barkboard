@@ -13,3 +13,4 @@ CREATE TABLE images (
   upvotes INTEGER,
   downvotes INTEGER
 );
+

@@ -13,16 +13,16 @@
   height:360px;
 }
 
-.upvote {
+.votes {
   background-color: transparent;
-  color: green;
+  /* color: green; */
   font-size: 30px;
 }
 
-.downvote {
+.vote {
+  padding: 10px;
   background-color: transparent;
-  color: red;
-  font-size: 30px;
+  text-align: center;
 }
 
 /* The sidebar menu */
@@ -36,6 +36,9 @@
   background-color: #111; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
+  display: flex;
+  flex-flow: wrap;
+  text-align: center;
 }
 
 /* The navigation menu links */
@@ -62,4 +65,36 @@
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+.miniPic {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.miniPic p {
+  color: white;
+  font-size: 25px;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 500px;
+}
+
+.upvote {
+  color: black;
+  background-color: green;
+  margin: 5px;
+  border: none;
+}
+
+.downvote {
+  color: black;
+  background-color: red;
+  margin: 5px;
+  border: none;
 }

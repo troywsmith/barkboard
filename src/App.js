@@ -12,25 +12,62 @@ class App extends Component {
       },
       api2: {
         max: []
-      }
+      },
+      votes: 0
     };
+    this.upvote = this.upvote.bind(this);
   }
 
   componentDidMount() {
+    this.fetchApi();
+  }
+
+  fetchApi() {
     fetch('/.json')
       .then(response => response.json())
       .then(api => this.setState({ api }))
       .catch(err => {
         console.log(err);
-      });
-      console.log(this.state.api.images);
+    });
+    console.log(this.state.api.images);
     fetch('/max')
       .then(response => response.json())
       .then(api2 => this.setState({ api2 }))
       .catch(err => {
         console.log(err);
-      });
-      console.log(this.state.api2.max);  
+    });
+    console.log(this.state.api2.max);  
+  }
+
+  upvote(evt) {
+    evt.preventDefault();
+
+    const element = evt.target;
+    const name = element.name;
+    const value = element.value;
+    const newState = {};
+    newState[name] = value;
+    this.setState(newState);
+    console.log(this.state.newState);
+
+    const id = this.props.id
+    console.log(this.props.id)
+
+    const updateDog = {
+      dog: this.state.api.images,
+    }
+
+    fetch('/.json', {
+      method: "PUT",
+      body: JSON.stringify(1),
+      headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json"
+      }
+    })
+    .then(updateDog => {
+      this.fetchApi();
+    })
   }
 
   goTo(route) {
@@ -60,11 +97,10 @@ class App extends Component {
             <h3> All-time Leader </h3>
             {this.state.api2.max.map((image, index) => {
                 return (
-                <div key={index}>
-                  <img width={200} height={100} alt="900x500" src={image.url} />
-                    <h3>{image.name}</h3>
-                    <Badge className="upvote">{image.upvotes}</Badge>
-                    <Badge className="downvote">{image.downvotes}</Badge>
+                <div className="miniPic" key={index}>
+                  <img className="thumbnail" width={200} height={100} alt="900x500" src={image.url} />
+                  <p>{image.name}</p>
+                  <Badge className="votes">{image.upvotes}</Badge>
                 </div>
             )})}
           </div>
@@ -128,9 +164,10 @@ class App extends Component {
                 <Carousel.Item key={index}>
                 <img width={900} height={300} alt="900x300" src={image.url} />
                 <Carousel.Caption>
-                  <h3>{image.name}</h3>
-                  <Badge className="upvote">{image.upvotes}</Badge>
-                  <Badge className="downvote">{image.downvotes}</Badge>
+                    <h3>{image.name}</h3>
+                    <Badge className="votes">{image.upvotes}</Badge>
+                    <button onClick={this.upvote} className="upvote"> ↑ </button>
+                    <button onClick={this.downvote} className="downvote"> ↓ </button>
                 </Carousel.Caption>
               </Carousel.Item>
           )})}
